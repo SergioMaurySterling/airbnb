@@ -9,6 +9,7 @@ import {  SearchIcon,
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from 'next/router';
 
 
 
@@ -18,6 +19,7 @@ export default function Header() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numberOfGuests, setNumberOfGuests] = useState(1);
+  const route = useRouter();
 
   const selectionRange = {
     startDate: startDate,
@@ -33,10 +35,22 @@ export default function Header() {
     setSearchInput('');
   }
 
+  const search = () => {
+    route.push({
+      pathname: '/Search',
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numberOfGuests: numberOfGuests
+      },
+    })
+  }
+
   return (
     <header className='sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10'>
       {/* Left section */}
-      <div className='relative flex items-center
+      <div onClick={()=>route.push('/')} className='relative flex items-center
       h-10 cursor-pointer my-auto'>
         <Image src='https://links.papareact.com/qd3'
               alt='Airbnb logo'
@@ -88,7 +102,7 @@ export default function Header() {
           </div>
           <div className='flex' >
             <button onClick={resetInput} className='flex-grow text-gray-500' >Cancel</button>
-            <button className='text-red-400 flex-grow' >Search</button>
+            <button onClick={search} className='text-red-400 flex-grow' >Search</button>
           </div>
         </div>
       )}

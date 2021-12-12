@@ -1,4 +1,4 @@
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker,Popup } from 'react-map-gl';
 import { useState } from 'react';
 import getCenter from 'geolib/es/getCenter';
 
@@ -25,7 +25,18 @@ function Map({searchResults}) {
       {...viewport}
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
-
+      {searchResults.map(result => (
+        <div key={result.long}>
+          <Marker
+              longitude={result.long}
+              latitude={result.lat}
+              offsetLeft={-20}
+              offsetTop={-10}
+          >
+            <p>🏘</p>
+          </Marker>
+        </div>
+      ))}
     </ReactMapGL>
   )
 }

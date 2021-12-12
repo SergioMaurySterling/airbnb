@@ -1,14 +1,21 @@
 import ReactMapGL from 'react-map-gl';
 import { useState } from 'react';
+import getCenter from 'geolib/es/getCenter';
 
-function Map() {
+function Map({searchResults}) {
+
+  // Transfor searchResults object into {latitude:..., longitude:...} object
+  const coordinates = searchResults.map(result => ({
+    "latitude": result.lat,
+    "longitud": result.long
+  }))
 
   const [viewport, setViewport] = useState({
     width: '100%',
     height: '100%',
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 8
+    latitude: coordinates[0].latitude,
+    longitude: coordinates[0].longitude,
+    zoom: 11
   });
 
   return (
@@ -16,6 +23,7 @@ function Map() {
       mapStyle="mapbox://styles/sams081/ckx3abukn09mf14mu1juw7w3l"
       mapboxApiAccessToken={process.env.mapbox_key}
       {...viewport}
+      onViewportChange={(nextViewport) => setViewport(nextViewport)}
     >
 
     </ReactMapGL>

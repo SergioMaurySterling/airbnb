@@ -46,7 +46,7 @@ export default function Search({searchResults}) {
             </div>
           </section>
           <section className='xl:min-w-[600px] xl:h-[100em] w-[100%] h-[600px]' >
-            <Map />
+            <Map searchResults={searchResults} />
           </section>
         </main>
       <Footer />

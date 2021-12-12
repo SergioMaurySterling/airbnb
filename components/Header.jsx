@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 
 
 
-export default function Header() {
+export default function Header({placeholder}) {
 
   const [searchInput, setSearchInput] = useState('');
   const [startDate, setStartDate] = useState(new Date());
@@ -68,7 +68,7 @@ export default function Header() {
         className='flex- grow pl-5 bg-transparent
         outline-none text-sm text-gray-600 placeholder-gray-400'
         type='text'
-        placeholder='Start your search' />
+        placeholder={placeholder || "Start your search"} />
         <SearchIcon className='md:inline-flex hidden h-8  bg-red-400
         text-white rounded-full p-2 cursor-pointer md:mx-2' />
       </div>

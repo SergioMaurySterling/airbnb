@@ -14,6 +14,7 @@ export default function InfoCard({img, location, title, description, star, price
           alt='Site img'
           layout='fill'
           objectFit='cover'
+          className='rounded-2xl'
         />
       </div>
       <div className='flex flex-col flex-grow pl-5' >

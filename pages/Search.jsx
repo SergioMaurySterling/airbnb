@@ -2,8 +2,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
+import InfoCard from '../components/InfoCard';
 
-export default function Search() {
+export default function Search({searchResults}) {
 
   const route = useRouter();
   // ES6 Destructuring
@@ -28,9 +29,32 @@ export default function Search() {
               <p className='button' >Rooms and Beds</p>
               <p className='button' >More filters</p>
             </div>
+            <div className='flex flex-col' >
+              {searchResults.map(item => (
+                <InfoCard
+                  key={item.img}
+                  img={item.img}
+                  location={item.location}
+                  title={item.title}
+                  description={item.description}
+                  price={item.price}
+                  star={item.star}
+                  total={item.total}
+                />
+              ))}
+            </div>
           </section>
         </main>
       <Footer />
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const searchResults = await fetch('https://links.papareact.com/isz').then(res => res.json());
+  return {
+    props: {
+      searchResults,
+    }
+  }
 }

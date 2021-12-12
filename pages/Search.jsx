@@ -17,7 +17,7 @@ export default function Search({searchResults}) {
   return (
     <div className='h-screen' >
       <Header placeholder={`${location} | ${range} | ${numberOfGuests}`} />
-        <main className='flex' >
+        <main className='flex flex-col xl:flex-row' >
           <section className='flex-grow pt-14 px-6' >
             <p className='text-xs' >300+ Stays - {range} - for {numberOfGuests} number of guests</p>
             <h1 className='text-3xl font-semibold
@@ -45,7 +45,7 @@ export default function Search({searchResults}) {
               ))}
             </div>
           </section>
-          <section className='hidden xl:inline-flex' >
+          <section className='xl:min-w-[600px] xl:h-[100em] w-[100%] h-[600px]' >
             <Map />
           </section>
         </main>

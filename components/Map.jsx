@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import ReactMapGL, { Marker,Popup } from 'react-map-gl';
 import { useState } from 'react';
 import getCenter from 'geolib/es/getCenter';
+import requi from '../images/requi.png'
 
 function Map({searchResults}) {
 
@@ -35,9 +37,11 @@ function Map({searchResults}) {
               offsetLeft={-20}
               offsetTop={-10}
           >
-            <p onClick={() => setSelectedLocation(result)} 
-            className='cursor-pointer text-2xl animate-bounce' 
-            aria-label="push-pin" >🏘</p>
+            <img onClick={() => setSelectedLocation(result)} 
+            className='cursor-pointer w-10 h-10 rounded animate-bounce'
+            aria-label="push-pin" 
+            src="https://firebasestorage.googleapis.com/v0/b/petti-2d60d.appspot.com/o/Home%2Frequi.png?alt=media&token=37e1b38a-760c-4b6a-8fd5-ac90e49e55ab" 
+            alt='Requi logo'></img>
           </Marker>
           {/* Pop up name */}
           {selectedLocation.long === result.long ? (
